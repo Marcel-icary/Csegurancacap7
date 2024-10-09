@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Csegurancacap7.props" />
+</Project>
