@@ -1,9 +1,9 @@
-# Estágio base com runtime do ASP.NET Core
+# EstÃ¡gio base com runtime do ASP.NET Core
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 80
 
-# Estágio de build com o SDK do .NET
+# EstÃ¡gio de build com o SDK do .NET
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
@@ -13,12 +13,12 @@ COPY . .
 WORKDIR "/src/Csegurancacap7"
 RUN dotnet build "./Csegurancacap7.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Estágio de publicação
+# EstÃ¡gio de publicaÃ§Ã£o
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./Csegurancacap7.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# Estágio final para execução do contêiner
+# EstÃ¡gio final para execuÃ§Ã£o do contÃªiner
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
