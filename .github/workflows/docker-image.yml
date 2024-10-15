@@ -13,7 +13,10 @@ jobs:
           uses: azure/login@v1
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
+            
+        - name: List files
+          run: ls -lha
+          
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
