@@ -24,7 +24,7 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/csegcap7:${{ github.sha }} -f Csegurancacap7/demo/Dockerfile .
+            docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/csegcap7:${{ github.sha }} -f demo/Dockerfile .
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/csegcap7:${{ github.sha }}
 
         - name: 'Deploy to Azure Container Instances'
